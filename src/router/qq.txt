@@ -1,0 +1,87 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+// import Home from '@/components/home/index'
+// import Kind from '@/components/kind/index'
+// import Cart from '@/components/cart/index'
+// import User from '@/components/user/index'
+// import Detail from '@/components/detail/index'
+// import Header from '@/components/Header'
+// import HomeHeader from '@/components/home/header'
+// import Footer from '@/components/Footer'
+const Detail = () => import('@/components/detail/index')
+Vue.use(Router)
+
+export default new Router({
+    routes: [
+        {
+            path: '/',
+            redirect: '/home'
+        },
+        {
+            // path: '/detail/:id',  //  params形式   /detail/111
+            path: '/detail', // query形式      /detail?id=111
+            name: 'detail',
+            components: {
+                default: Detail
+            }
+        },
+        {
+            path: '/city', // query形式      /detail?id=111
+            name: 'city',
+            components: {
+                default: () => import('@/components/city/index')
+            }
+        },
+        {
+            path: '/home',
+            name: 'home',
+            // component: Home
+            components: {
+                header: () => import('@/components/home/header'),
+                default: () => import('@/components/home/index'),
+                footer: () => import('@/components/Footer')
+            }
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            // component: Cart
+            components: {
+                header: () => import('@/components/Header'),
+                default: () => import('@/components/cart/index'),
+                footer: () => import('@/components/Footer')
+            },
+            alias: '/c'
+        },
+        {
+            path: '/kind',
+            name: 'kind',
+            // component: Kind
+            components: {
+                header: () => import('@/components/Header'),
+                default: () => import('@/components/kind/index'),
+                footer: () => import('@/components/Footer')
+            }
+        },
+        {
+            path: '/user',
+            name: 'user',
+            // component: User
+            components: {
+                header: () => import('@/components/Header'),
+                default: () => import('@/components/user/index'),
+                footer: () => import('@/components/Footer')
+            },
+            children: [
+                {
+                    path: 'login', // 此处不要加/
+                    component: () => import('@/components/user/login')
+                },
+                {
+                    path: 'noLogin',
+                    component: () => import('@/components/user/noLogin')
+                }
+            ]
+        }
+    ]
+})

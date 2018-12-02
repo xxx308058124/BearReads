@@ -1,0 +1,29 @@
+@import '@/lib/reset.scss';
+
+html, body, .container {
+  // width: 100%;
+  // height: 100%;
+  @include rect(100%, 100%);
+}
+.container {
+  @include flexbox(); //弹性盒布局-- 兼容写法都涵盖了
+  @include flex-direction(column); // 竖直方向
+  .header {
+    @include rect(100%, 0.44rem);
+    @include background-color(#f66);
+    @include text-color(#fff); // 字体颜色
+    @include font-size(0.22rem);
+    @include flexbox();
+    @include justify-content();
+    @include align-items();
+  }
+  .content {
+    @include flex();
+    @include rect(100%, auto);
+    @include overflow()
+  }
+  .footer {
+    @include rect(100%, 0.5rem);
+    @include background-color(#eee);
+  }
+}
