@@ -34,5 +34,3 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 
-
-大部分接口为追书神器所有
